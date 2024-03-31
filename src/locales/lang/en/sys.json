@@ -74,6 +74,7 @@
     "rememberMe": "Remember me",
     "forgetPassword": "Forget Password?",
     "otherSignIn": "Sign in with",
+    "otherSignInNot": "Not supported Sign in with",
     "loginSuccessTitle": "Login successful",
     "loginSuccessDesc": "Welcome back",
     "accountPlaceholder": "Please input username",

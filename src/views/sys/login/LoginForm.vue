@@ -58,11 +58,11 @@
           {{ t('sys.login.mobileSignInFormTitle') }}
         </Button>
       </ACol>
-      <ACol :md="8" :xs="24">
+      <!-- <ACol :md="8" :xs="24">
         <Button block @click="setLoginState(LoginStateEnum.QR_CODE)">
           {{ t('sys.login.qrSignInFormTitle') }}
         </Button>
-      </ACol>
+      </ACol> -->
       <ACol :md="8" :xs="24">
         <Button block @click="setLoginState(LoginStateEnum.REGISTER)">
           {{ t('sys.login.registerButton') }}
@@ -70,14 +70,14 @@
       </ACol>
     </ARow>
 
-    <Divider class="enter-x">{{ t('sys.login.otherSignIn') }}</Divider>
+    <!-- <Divider class="enter-x">{{ t('sys.login.otherSignInNot') }}</Divider> -->
 
     <div class="flex justify-evenly enter-x" :class="`${prefixCls}-sign-in-way`">
-      <GithubFilled />
-      <WechatFilled />
-      <AlipayCircleFilled />
-      <GoogleCircleFilled />
-      <TwitterCircleFilled />
+      <!-- <GithubFilled /> -->
+      <!-- <WechatFilled /> -->
+      <!-- <AlipayCircleFilled /> -->
+      <!-- <GoogleCircleFilled /> -->
+      <!-- <TwitterCircleFilled /> -->
     </div>
   </Form>
 </template>
@@ -85,13 +85,12 @@
   import { reactive, ref, unref, computed } from 'vue';
 
   import { Checkbox, Form, Input, Row, Col, Button, Divider } from 'ant-design-vue';
-  import {
-    GithubFilled,
-    WechatFilled,
-    AlipayCircleFilled,
-    GoogleCircleFilled,
-    TwitterCircleFilled,
-  } from '@ant-design/icons-vue';
+  import {} from // GithubFilled,
+  // WechatFilled,
+  // AlipayCircleFilled,
+  // GoogleCircleFilled,
+  // TwitterCircleFilled,
+  '@ant-design/icons-vue';
   import LoginFormTitle from './LoginFormTitle.vue';
 
   import { useI18n } from '@/hooks/web/useI18n';
