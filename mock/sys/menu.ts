@@ -45,7 +45,7 @@ const backRoute = {
   path: 'back',
   name: 'PermissionBackDemo',
   meta: {
-    title: 'routes.demo.permission.back',
+    title: 'routes.main.permission.back',
   },
 
   children: [
@@ -54,7 +54,7 @@ const backRoute = {
       name: 'BackAuthPage',
       component: '/demo/permission/back/index',
       meta: {
-        title: 'routes.demo.permission.backPage',
+        title: 'routes.main.permission.backPage',
       },
     },
     {
@@ -62,7 +62,7 @@ const backRoute = {
       name: 'BackAuthBtn',
       component: '/demo/permission/back/Btn',
       meta: {
-        title: 'routes.demo.permission.backBtn',
+        title: 'routes.main.permission.backBtn',
       },
     },
   ],
@@ -75,7 +75,7 @@ const authRoute = {
   redirect: '/permission/front/page',
   meta: {
     icon: 'carbon:user-role',
-    title: 'routes.demo.permission.permission',
+    title: 'routes.main.permission.permission',
   },
   children: [backRoute],
 };
@@ -87,7 +87,7 @@ const levelRoute = {
   redirect: '/level/menu1/menu1-1',
   meta: {
     icon: 'carbon:user-role',
-    title: 'routes.demo.level.level',
+    title: 'routes.main.level.level',
   },
 
   children: [
@@ -213,14 +213,14 @@ const linkRoute = {
   component: 'LAYOUT',
   meta: {
     icon: 'ion:tv-outline',
-    title: 'routes.demo.iframe.frame',
+    title: 'routes.main.iframe.frame',
   },
   children: [
     {
       path: 'doc',
       name: 'Doc',
       meta: {
-        title: 'routes.demo.iframe.doc',
+        title: 'routes.main.iframe.doc',
         frameSrc: 'https://doc.vvbin.cn/',
       },
     },
@@ -229,7 +229,7 @@ const linkRoute = {
       name: 'DocExternal',
       component: 'LAYOUT',
       meta: {
-        title: 'routes.demo.iframe.docExternal',
+        title: 'routes.main.iframe.docExternal',
       },
     },
   ],

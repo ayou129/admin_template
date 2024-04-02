@@ -13,7 +13,7 @@ const iframe: AppRouteModule = {
   meta: {
     dept_sort: 1000,
     icon: 'ion:tv-outline',
-    title: t('routes.demo.iframe.frame'),
+    title: t('routes.main.iframe.frame'),
   },
 
   children: [
@@ -23,7 +23,7 @@ const iframe: AppRouteModule = {
       component: IFrame,
       meta: {
         frameSrc: 'https://doc.vvbin.cn/',
-        title: t('routes.demo.iframe.doc'),
+        title: t('routes.main.iframe.doc'),
       },
     },
     {
@@ -32,7 +32,7 @@ const iframe: AppRouteModule = {
       component: IFrame,
       meta: {
         frameSrc: 'https://www.antdv.com/docs/vue/introduce-cn/',
-        title: t('routes.demo.iframe.antv'),
+        title: t('routes.main.iframe.antv'),
       },
     },
     {
@@ -40,7 +40,7 @@ const iframe: AppRouteModule = {
       name: 'DocExternal',
       component: IFrame,
       meta: {
-        title: t('routes.demo.iframe.docExternal'),
+        title: t('routes.main.iframe.docExternal'),
       },
     },
   ],

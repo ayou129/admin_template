@@ -11,7 +11,7 @@ const permission: AppRouteModule = {
   meta: {
     dept_sort: 2000,
     icon: 'ion:menu-outline',
-    title: t('routes.demo.level.level'),
+    title: t('routes.main.level.level'),
   },
 
   children: [
@@ -36,7 +36,7 @@ const permission: AppRouteModule = {
             {
               path: 'menu1-1-1',
               name: 'Menu111Demo',
-              component: () => import('@/views/demo/level/Menu111.vue'),
+              component: () => import('@/views/main/level/Menu111.vue'),
               meta: {
                 title: 'Menu111',
               },
@@ -46,7 +46,7 @@ const permission: AppRouteModule = {
         {
           path: 'menu1-2',
           name: 'Menu12Demo',
-          component: () => import('@/views/demo/level/Menu12.vue'),
+          component: () => import('@/views/main/level/Menu12.vue'),
           meta: {
             title: 'Menu1-2',
           },
@@ -56,7 +56,7 @@ const permission: AppRouteModule = {
     {
       path: 'menu2',
       name: 'Menu2Demo',
-      component: () => import('@/views/demo/level/Menu2.vue'),
+      component: () => import('@/views/main/level/Menu2.vue'),
       meta: {
         title: 'Menu2',
         // ignoreKeepAlive: true,

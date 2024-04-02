@@ -12,15 +12,15 @@ const steps: AppRouteModule = {
     dept_sort: 90000,
     hideChildrenInMenu: true,
     icon: 'whh:paintroll',
-    title: t('routes.demo.steps.page'),
+    title: t('routes.main.steps.page'),
   },
   children: [
     {
       path: 'index',
       name: 'StepsDemoPage',
-      component: () => import('@/views/demo/steps/index.vue'),
+      component: () => import('@/views/main/steps/index.vue'),
       meta: {
-        title: t('routes.demo.steps.page'),
+        title: t('routes.main.steps.page'),
         icon: 'whh:paintroll',
         hideMenu: true,
       },

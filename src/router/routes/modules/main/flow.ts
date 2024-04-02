@@ -11,15 +11,15 @@ const charts: AppRouteModule = {
   meta: {
     dept_sort: 5000,
     icon: 'tabler:chart-dots',
-    title: t('routes.demo.flow.name'),
+    title: t('routes.main.flow.name'),
   },
   children: [
     {
       path: 'flowChart',
       name: 'flowChartDemo',
-      component: () => import('@/views/demo/comp/flow-chart/index.vue'),
+      component: () => import('@/views/main/comp/flow-chart/index.vue'),
       meta: {
-        title: t('routes.demo.flow.flowChart'),
+        title: t('routes.main.flow.flowChart'),
       },
     },
   ],
