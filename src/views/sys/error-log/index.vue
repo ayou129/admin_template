@@ -95,3 +95,4 @@
     await fireErrorApi();
   }
 </script>
+@/api/main/error

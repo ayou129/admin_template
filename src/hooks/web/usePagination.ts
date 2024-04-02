@@ -1,21 +1,21 @@
 import type { Ref } from 'vue';
 import { ref, unref, computed } from 'vue';
 
-function pagination<T = any>(list: T[], pageNo: number, pageSize: number): T[] {
-  const offset = (pageNo - 1) * Number(pageSize);
+function pagination<T = any>(list: T[], pageNo: number, page_limit: number): T[] {
+  const offset = (pageNo - 1) * Number(page_limit);
   const ret =
-    offset + Number(pageSize) >= list.length
+    offset + Number(page_limit) >= list.length
       ? list.slice(offset, list.length)
-      : list.slice(offset, offset + Number(pageSize));
+      : list.slice(offset, offset + Number(page_limit));
   return ret;
 }
 
-export function usePagination<T = any>(list: Ref<T[]>, pageSize: number) {
+export function usePagination<T = any>(list: Ref<T[]>, page_limit: number) {
   const currentPage = ref(1);
-  const pageSizeRef = ref(pageSize);
+  const page_limitRef = ref(page_limit);
 
   const getPaginationList = computed(() => {
-    return pagination(unref(list), unref(currentPage), unref(pageSizeRef));
+    return pagination(unref(list), unref(currentPage), unref(page_limitRef));
   });
 
   const getTotal = computed(() => {
@@ -26,8 +26,8 @@ export function usePagination<T = any>(list: Ref<T[]>, pageSize: number) {
     currentPage.value = page;
   }
 
-  function setPageSize(pageSize: number) {
-    pageSizeRef.value = pageSize;
+  function setPageSize(page_limit: number) {
+    page_limitRef.value = page_limit;
   }
 
   return { setCurrentPage, getTotal, setPageSize, getPaginationList };

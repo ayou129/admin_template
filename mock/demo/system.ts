@@ -8,9 +8,9 @@ const accountList = (() => {
       id: `${index}`,
       account: '@first',
       email: '@email',
-      nickname: '@cname()',
+      nick_name: '@cname()',
       role: '@first',
-      createTime: '@datetime',
+      created_at: '@datetime',
       remark: '@cword(10,20)',
       'dept|0-2': 1,
       'status|1': ['0', '1'],
@@ -24,10 +24,10 @@ const roleList = (() => {
   for (let index = 0; index < 4; index++) {
     result.push({
       id: index + 1,
-      orderNo: `${index + 1}`,
+      dept_sort: `${index + 1}`,
       roleName: ['超级管理员', '管理员', '文章管理员', '普通用户'][index],
       roleValue: '@first',
-      createTime: '@datetime',
+      created_at: '@datetime',
       remark: '@cword(10,20)',
       menu: [['0', '1', '2'], ['0', '1'], ['0', '2'], ['2']][index],
       'status|1': ['0', '1'],
@@ -41,9 +41,9 @@ const deptList = (() => {
   for (let index = 0; index < 3; index++) {
     result.push({
       id: `${index}`,
-      deptName: ['华东分部', '华南分部', '西北分部'][index],
-      orderNo: index + 1,
-      createTime: '@datetime',
+      name: ['华东分部', '华南分部', '西北分部'][index],
+      dept_sort: index + 1,
+      created_at: '@datetime',
       remark: '@cword(10,20)',
       'status|1': ['0', '0', '1'],
       children: (() => {
@@ -51,12 +51,12 @@ const deptList = (() => {
         for (let j = 0; j < 4; j++) {
           children.push({
             id: `${index}-${j}`,
-            deptName: ['研发部', '市场部', '商务部', '财务部'][j],
-            orderNo: j + 1,
-            createTime: '@datetime',
+            name: ['研发部', '市场部', '商务部', '财务部'][j],
+            dept_sort: j + 1,
+            created_at: '@datetime',
             remark: '@cword(10,20)',
             'status|1': ['0', '1'],
-            parentDept: `${index}`,
+            pid: `${index}`,
             children: undefined,
           });
         }
@@ -75,10 +75,10 @@ const menuList = (() => {
       icon: ['ion:layers-outline', 'ion:git-compare-outline', 'ion:tv-outline'][index],
       component: 'LAYOUT',
       type: '0',
-      menuName: ['Dashboard', '权限管理', '功能'][index],
+      name: ['Dashboard', '权限管理', '功能'][index],
       permission: '',
-      orderNo: index + 1,
-      createTime: '@datetime',
+      dept_sort: index + 1,
+      created_at: '@datetime',
       'status|1': ['0', '0', '1'],
       children: (() => {
         const children: any[] = [];
@@ -86,7 +86,7 @@ const menuList = (() => {
           children.push({
             id: `${index}-${j}`,
             type: '1',
-            menuName: ['菜单1', '菜单2', '菜单3', '菜单4'][j],
+            name: ['菜单1', '菜单2', '菜单3', '菜单4'][j],
             icon: 'ion:document',
             permission: ['menu1:view', 'menu2:add', 'menu3:update', 'menu4:del'][index],
             component: [
@@ -95,8 +95,8 @@ const menuList = (() => {
               '/dashboard/workbench/index',
               '/dashboard/test/index',
             ][j],
-            orderNo: j + 1,
-            createTime: '@datetime',
+            dept_sort: j + 1,
+            created_at: '@datetime',
             'status|1': ['0', '1'],
             parentMenu: `${index}`,
             children: (() => {
@@ -105,7 +105,7 @@ const menuList = (() => {
                 children.push({
                   id: `${index}-${j}-${k}`,
                   type: '2',
-                  menuName: '按钮' + (j + 1) + '-' + (k + 1),
+                  name: '按钮' + (j + 1) + '-' + (k + 1),
                   icon: '',
                   permission:
                     ['menu1:view', 'menu2:add', 'menu3:update', 'menu4:del'][index] +
@@ -117,8 +117,8 @@ const menuList = (() => {
                     '/dashboard/workbench/index',
                     '/dashboard/test/index',
                   ][j],
-                  orderNo: j + 1,
-                  createTime: '@datetime',
+                  dept_sort: j + 1,
+                  created_at: '@datetime',
                   'status|1': ['0', '1'],
                   parentMenu: `${index}-${j}`,
                   children: undefined,
@@ -141,21 +141,21 @@ export default [
     timeout: 100,
     method: 'get',
     response: ({ query }) => {
-      const { page = 1, pageSize = 20 } = query;
-      return resultPageSuccess(page, pageSize, accountList);
+      const { page = 1, page_limit = 20 } = query;
+      return resultPageSuccess(page, page_limit, accountList);
     },
   },
   {
-    url: '/basic-api/system/getRoleListByPage',
+    url: '/basic-api/system/getRoleList',
     timeout: 100,
     method: 'get',
     response: ({ query }) => {
-      const { page = 1, pageSize = 20 } = query;
-      return resultPageSuccess(page, pageSize, roleList);
+      const { page = 1, page_limit = 20 } = query;
+      return resultPageSuccess(page, page_limit, roleList);
     },
   },
   {
-    url: '/basic-api/system/setRoleStatus',
+    url: '/basic-api/system/setRole',
     timeout: 500,
     method: 'post',
     response: ({ query }) => {
@@ -164,7 +164,7 @@ export default [
     },
   },
   {
-    url: '/basic-api/system/getAllRoleList',
+    url: '/basic-api/system/getRoleListAll',
     timeout: 100,
     method: 'get',
     response: () => {
@@ -180,7 +180,7 @@ export default [
     },
   },
   {
-    url: '/basic-api/system/getMenuList',
+    url: '/basic-api/system/getUserMenus',
     timeout: 100,
     method: 'get',
     response: () => {

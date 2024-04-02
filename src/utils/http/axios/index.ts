@@ -39,24 +39,25 @@ const transform: AxiosTransform = {
       return res;
     }
     // 不进行任何处理，直接返回
-    // 用于页面代码可能需要直接获取code，data，message这些信息时开启
+    // 用于页面代码可能需要直接获取code，data，msg这些信息时开启
     if (!isTransformResponse) {
       return res.data;
     }
     // 错误的时候返回
 
-    const { data } = res;
-    if (!data) {
+    if (!res.data) {
       // return '[HTTP] Request has no return value';
       throw new Error(t('sys.api.apiRequestFailed'));
     }
-    //  这里 code，result，message为 后台统一的字段，需要在 types.ts内修改为项目自己的接口返回格式
-    const { code, result, message } = data;
+    //  这里 code，result，msg为 后台统一的字段，需要在 types.ts内修改为项目自己的接口返回格式
+
+    const { code, data, msg } = res.data;
 
     // 这里逻辑可以根据项目进行修改
-    const hasSuccess = data && Reflect.has(data, 'code') && code === ResultEnum.SUCCESS;
+    // const hasSuccess = data && Reflect.has(data, 'code') && code === ResultEnum.SUCCESS;
+    const hasSuccess = data && code === ResultEnum.SUCCESS;
     if (hasSuccess) {
-      let successMsg = message;
+      let successMsg = msg;
 
       if (isNull(successMsg) || isUndefined(successMsg) || isEmpty(successMsg)) {
         successMsg = t(`sys.api.operationSuccess`);
@@ -64,10 +65,10 @@ const transform: AxiosTransform = {
 
       if (options.successMessageMode === 'modal') {
         createSuccessModal({ title: t('sys.api.successTip'), content: successMsg });
-      } else if (options.successMessageMode === 'message') {
+      } else if (options.successMessageMode === 'msg') {
         createMessage.success(successMsg);
       }
-      return result;
+      return data;
     }
 
     // 在此处根据自己项目的实际情况对不同的code执行不同的操作
@@ -81,8 +82,8 @@ const transform: AxiosTransform = {
         userStore.logout(false);
         break;
       default:
-        if (message) {
-          timeoutMsg = message;
+        if (msg) {
+          timeoutMsg = msg;
         }
     }
 
@@ -90,7 +91,7 @@ const transform: AxiosTransform = {
     // errorMessageMode='none' 一般是调用时明确表示不希望自动弹出错误提示
     if (options.errorMessageMode === 'modal') {
       createErrorModal({ title: t('sys.api.errorTip'), content: timeoutMsg });
-    } else if (options.errorMessageMode === 'message') {
+    } else if (options.errorMessageMode === 'msg') {
       createMessage.error(timeoutMsg);
     }
 
@@ -181,7 +182,7 @@ const transform: AxiosTransform = {
     errorLogStore.addAjaxErrorInfo(error);
     const { response, code, message, config } = error || {};
     const errorMessageMode = config?.requestOptions?.errorMessageMode || 'none';
-    const msg: string = response?.data?.error?.message ?? '';
+    const msg: string = response?.data?.msg ?? '';
     const err: string = error?.toString?.() ?? '';
     let errMessage = '';
 
@@ -200,7 +201,7 @@ const transform: AxiosTransform = {
       if (errMessage) {
         if (errorMessageMode === 'modal') {
           createErrorModal({ title: t('sys.api.errorTip'), content: errMessage });
-        } else if (errorMessageMode === 'message') {
+        } else if (errorMessageMode === 'msg') {
           createMessage.error(errMessage);
         }
         return Promise.reject(error);
@@ -253,7 +254,7 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
           // 格式化提交参数时间
           formatDate: true,
           // 消息提示类型
-          errorMessageMode: 'message',
+          errorMessageMode: 'msg',
           // 接口地址
           apiUrl: globSetting.apiUrl,
           // 接口拼接地址

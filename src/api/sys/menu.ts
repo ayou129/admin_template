@@ -1,14 +1,14 @@
 import { defHttp } from '@/utils/http/axios';
-import { getMenuListResultModel } from './model/menuModel';
+import { getUserMenusResultModel } from './model/menuModel';
 
 enum Api {
-  GetMenuList = '/getMenuList',
+  GetMenusByUser = '/auth/user/menus',
 }
 
 /**
  * @description: Get user menu based on id
  */
 
-export const getMenuList = () => {
-  return defHttp.get<getMenuListResultModel>({ url: Api.GetMenuList });
+export const getUserMenus = () => {
+  return defHttp.get<getUserMenusResultModel>({ url: Api.GetMenusByUser });
 };

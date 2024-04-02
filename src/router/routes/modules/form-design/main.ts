@@ -7,7 +7,7 @@ const permission: AppRouteModule = {
   name: 'Form-designer',
   component: LAYOUT,
   meta: {
-    orderNo: 10000,
+    dept_sort: 10000,
     icon: 'ion:build-outline',
     title: '表单设计',
   },

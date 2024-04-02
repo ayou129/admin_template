@@ -11,14 +11,14 @@ export default {
       // The field name of the current page passed to the background
       pageField: 'page',
       // The number field name of each page displayed in the background
-      sizeField: 'pageSize',
+      sizeField: 'page_limit',
       // Field name of the form data returned by the interface
-      listField: 'items',
+      listField: 'data',
       // Total number of tables returned by the interface field name
       totalField: 'total',
     },
     // Number of pages that can be selected
-    pageSizeOptions: ['10', '50', '80', '100'],
+    page_limitOptions: ['10', '50', '80', '100'],
     // Default display quantity on one page
     defaultPageSize: 10,
     // Default Size
@@ -74,14 +74,14 @@ export default {
         custom: true,
       },
       pagerConfig: {
-        pageSizes: [20, 50, 100, 500],
-        pageSize: 20,
+        page_limits: [20, 50, 100, 500],
+        page_limit: 20,
         autoHidden: true,
       },
       proxyConfig: {
         form: true,
         props: {
-          result: 'items',
+          result: 'data',
           total: 'total',
         },
       },

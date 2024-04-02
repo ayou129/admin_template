@@ -40,7 +40,7 @@ export interface Menu {
 
   children?: Menu[];
 
-  orderNo?: number;
+  dept_sort?: number;
 
   roles?: RoleEnum[];
 

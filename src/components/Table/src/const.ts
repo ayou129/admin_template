@@ -3,7 +3,7 @@ import componentSetting from '@/settings/componentSetting';
 const { table } = componentSetting;
 
 const {
-  pageSizeOptions,
+  page_limitOptions,
   defaultPageSize,
   fetchSetting,
   defaultSize,
@@ -14,7 +14,7 @@ const {
 export const ROW_KEY = 'key';
 
 // Optional display number per page;
-export const PAGE_SIZE_OPTIONS = pageSizeOptions;
+export const PAGE_SIZE_OPTIONS = page_limitOptions;
 
 // Number of items displayed per page
 export const PAGE_SIZE = defaultPageSize;

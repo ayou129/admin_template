@@ -60,7 +60,8 @@
       type: Array as PropType<ListItem[]>,
       default: () => [],
     },
-    pageSize: {
+    // eslint-disable-next-line vue/prop-name-casing
+    page_limit: {
       type: [Boolean, Number] as PropType<Boolean | Number>,
       default: 5,
     },
@@ -86,9 +87,9 @@
   const { prefixCls } = useDesign('header-notify-list');
   const current = ref(props.currentPage || 1);
   const getData = computed(() => {
-    const { pageSize, list } = props;
-    if (pageSize === false) return [];
-    let size = isNumber(pageSize) ? pageSize : 5;
+    const { page_limit, list } = props;
+    if (page_limit === false) return [];
+    let size = isNumber(page_limit) ? page_limit : 5;
     return list.slice(size * (unref(current) - 1), size * unref(current));
   });
   watch(
@@ -98,16 +99,16 @@
     },
   );
   const getPagination = computed(() => {
-    const { list, pageSize } = props;
+    const { list, page_limit } = props;
 
     // compatible line 104
-    // if typeof pageSize is boolean, Number(true) && 5 = 5, Number(false) && 5 = 0
-    const size = isNumber(pageSize) ? pageSize : Number(pageSize) && 5;
+    // if typeof page_limit is boolean, Number(true) && 5 = 5, Number(false) && 5 = 0
+    const size = isNumber(page_limit) ? page_limit : Number(page_limit) && 5;
 
     if (size > 0 && list && list.length > size) {
       return {
         total: list.length,
-        pageSize: size,
+        page_limit: size,
         current: unref(current),
         onChange(page) {
           current.value = page;

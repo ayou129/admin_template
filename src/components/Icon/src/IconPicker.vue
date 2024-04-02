@@ -1,3 +1,5 @@
+<!-- eslint-disable vue/prop-name-casing -->
+<!-- eslint-disable vue/prop-name-casing -->
 <template>
   <Input
     :style="{ width }"
@@ -42,11 +44,11 @@
                 </li>
               </ul>
             </ScrollContainer>
-            <div class="flex py-2 items-center justify-center" v-if="getTotal >= pageSize">
+            <div class="flex py-2 items-center justify-center" v-if="getTotal >= page_limit">
               <Pagination
                 showLessItems
                 size="small"
-                :pageSize="pageSize"
+                :page_limit="page_limit"
                 :total="getTotal"
                 @change="handlePageChange"
               />
@@ -101,7 +103,8 @@
   export interface Props {
     value?: string;
     width?: string;
-    pageSize?: number;
+    // eslint-disable-next-line vue/prop-name-casing
+    page_limit?: number;
     copy?: boolean;
     mode?: 'svg' | 'iconify';
     allowClear?: boolean;
@@ -111,7 +114,7 @@
   const props = withDefaults(defineProps<Props>(), {
     value: '',
     width: '100%',
-    pageSize: 140,
+    page_limit: 140,
     copy: false,
     mode: 'iconify',
     allowClear: true,
@@ -146,7 +149,7 @@
 
   const { getPaginationList, getTotal, setCurrentPage } = usePagination(
     currentList,
-    props.pageSize,
+    props.page_limit,
   );
 
   watchEffect(() => {

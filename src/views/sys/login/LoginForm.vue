@@ -84,7 +84,8 @@
 <script lang="ts" setup>
   import { reactive, ref, unref, computed } from 'vue';
 
-  import { Checkbox, Form, Input, Row, Col, Button, Divider } from 'ant-design-vue';
+  // Divider
+  import { Checkbox, Form, Input, Row, Col, Button } from 'ant-design-vue';
   import {} from // GithubFilled,
   // WechatFilled,
   // AlipayCircleFilled,
@@ -106,7 +107,8 @@
   const FormItem = Form.Item;
   const InputPassword = Input.Password;
   const { t } = useI18n();
-  const { notification, createErrorModal } = useMessage();
+  // createErrorModal
+  const { notification } = useMessage();
   const { prefixCls } = useDesign('login');
   const userStore = useUserStore();
 
@@ -136,21 +138,21 @@
       const userInfo = await userStore.login({
         password: data.password,
         username: data.account,
-        mode: 'none', //不要默认的错误提示
+        mode: 'msg', //不要默认的错误提示
       });
       if (userInfo) {
         notification.success({
           message: t('sys.login.loginSuccessTitle'),
-          description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.realName}`,
+          description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.nick_name}`,
           duration: 3,
         });
       }
     } catch (error) {
-      createErrorModal({
-        title: t('sys.api.errorTip'),
-        content: (error as unknown as Error).message || t('sys.api.networkExceptionMsg'),
-        getContainer: () => document.body.querySelector(`.${prefixCls}`) || document.body,
-      });
+      // createErrorModal({
+      //   title: t('sys.api.errorTip'),
+      //   content: (error as unknown as Error).message || t('sys.api.networkExceptionMsg'),
+      //   getContainer: () => document.body.querySelector(`.${prefixCls}`) || document.body,
+      // });
     } finally {
       loading.value = false;
     }

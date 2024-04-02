@@ -14,7 +14,7 @@ const stp = projectSetting.sessionTimeoutProcessing;
 export function checkStatus(
   status: number,
   msg: string,
-  errorMessageMode: ErrorMessageMode = 'message',
+  errorMessageMode: ErrorMessageMode = 'msg',
 ): void {
   const { t } = useI18n();
   const userStore = useUserStoreWithOut();
@@ -74,7 +74,7 @@ export function checkStatus(
   if (errMessage) {
     if (errorMessageMode === 'modal') {
       createErrorModal({ title: t('sys.api.errorTip'), content: errMessage });
-    } else if (errorMessageMode === 'message') {
+    } else if (errorMessageMode === 'msg') {
       error({ content: errMessage, key: `global_error_message_status_${status}` });
     }
   }

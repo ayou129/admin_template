@@ -108,7 +108,7 @@
   const data = ref([]);
   // 切换每行个数
   // cover图片自适应高度
-  //修改pageSize并重新请求数据
+  //修改page_limit并重新请求数据
 
   const height = computed(() => {
     return `h-${120 - grid.value * 6}`;
@@ -128,7 +128,7 @@
     await fetch(data);
   }
   function sliderChange(n) {
-    pageSize.value = n * 4;
+    page_limit.value = n * 4;
     fetch();
   }
 
@@ -141,33 +141,33 @@
   async function fetch(p = {}) {
     const { api, params } = props;
     if (api && isFunction(api)) {
-      const res = await api({ ...params, page: page.value, pageSize: pageSize.value, ...p });
-      data.value = res.items;
+      const res = await api({ ...params, page: page.value, page_limit: page_limit.value, ...p });
+      data.value = res.data;
       total.value = res.total;
     }
   }
   //分页相关
   const page = ref(1);
-  const pageSize = ref(36);
+  const page_limit = ref(36);
   const total = ref(0);
   const paginationProp = ref({
     showSizeChanger: false,
     showQuickJumper: true,
-    pageSize,
+    page_limit,
     current: page,
     total,
     showTotal: (total: number) => `总 ${total} 条`,
     onChange: pageChange,
-    onShowSizeChange: pageSizeChange,
+    onShowSizeChange: page_limitChange,
   });
 
   function pageChange(p: number, pz: number) {
     page.value = p;
-    pageSize.value = pz;
+    page_limit.value = pz;
     fetch();
   }
-  function pageSizeChange(_current, size: number) {
-    pageSize.value = size;
+  function page_limitChange(_current, size: number) {
+    page_limit.value = size;
     fetch();
   }
 

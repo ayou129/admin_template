@@ -51,7 +51,7 @@ export interface PaginationProps {
    * number of data items per page
    * @type number
    */
-  pageSize?: number;
+  page_limit?: number;
 
   /**
    * Whether to hide pager on single page
@@ -61,7 +61,7 @@ export interface PaginationProps {
   hideOnSinglePage?: boolean;
 
   /**
-   * determine whether pageSize can be changed
+   * determine whether page_limit can be changed
    * @default false
    * @type boolean
    */
@@ -72,7 +72,7 @@ export interface PaginationProps {
    * @default ['10', '20', '30', '40']
    * @type string[]
    */
-  pageSizeOptions?: string[];
+  page_limitOptions?: string[];
 
   /**
    * determine whether you can jump to pages directly

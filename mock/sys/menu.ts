@@ -143,66 +143,66 @@ const sysRoute = {
   redirect: '/system/account',
   meta: {
     icon: 'ion:settings-outline',
-    title: 'routes.demo.system.moduleName',
+    title: 'routes.main.system.moduleName',
   },
   children: [
     {
       path: 'account',
       name: 'AccountManagement',
       meta: {
-        title: 'routes.demo.system.account',
+        title: 'routes.main.system.account',
         ignoreKeepAlive: true,
       },
-      component: '/demo/system/account/index',
+      component: '/main/system/account/index',
     },
     {
       path: 'account_detail/:id',
       name: 'AccountDetail',
       meta: {
         hideMenu: true,
-        title: 'routes.demo.system.account_detail',
+        title: 'routes.main.system.account_detail',
         ignoreKeepAlive: true,
         showMenu: false,
         currentActiveMenu: '/system/account',
       },
-      component: '/demo/system/account/AccountDetail',
+      component: '/main/system/account/AccountDetail',
     },
     {
       path: 'role',
       name: 'RoleManagement',
       meta: {
-        title: 'routes.demo.system.role',
+        title: 'routes.main.system.role',
         ignoreKeepAlive: true,
       },
-      component: '/demo/system/role/index',
+      component: '/main/system/role/index',
     },
 
     {
       path: 'menu',
       name: 'MenuManagement',
       meta: {
-        title: 'routes.demo.system.menu',
+        title: 'routes.main.system.menu',
         ignoreKeepAlive: true,
       },
-      component: '/demo/system/menu/index',
+      component: '/main/system/menu/index',
     },
     {
       path: 'dept',
       name: 'DeptManagement',
       meta: {
-        title: 'routes.demo.system.dept',
+        title: 'routes.main.system.dept',
         ignoreKeepAlive: true,
       },
-      component: '/demo/system/dept/index',
+      component: '/main/system/dept/index',
     },
     {
       path: 'changePassword',
       name: 'ChangePassword',
       meta: {
-        title: 'routes.demo.system.password',
+        title: 'routes.main.system.password',
         ignoreKeepAlive: true,
       },
-      component: '/demo/system/password/index',
+      component: '/main/system/password/index',
     },
   ],
 };
@@ -237,7 +237,7 @@ const linkRoute = {
 
 export default [
   {
-    url: '/basic-api/getMenuList',
+    url: '/basic-api/getUserMenus',
     timeout: 1000,
     method: 'get',
     response: (request: requestParams) => {
@@ -249,7 +249,7 @@ export default [
       if (!checkUser) {
         return resultError('Invalid user token!');
       }
-      const id = checkUser.userId;
+      const id = checkUser.id;
       let menu: Object[];
       switch (id) {
         case '1':
