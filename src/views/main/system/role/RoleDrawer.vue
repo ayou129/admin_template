@@ -25,7 +25,7 @@
   import { ref, computed, unref } from 'vue';
   import { BasicForm, useForm } from '@/components/Form';
   import { formSchema } from './role.data';
-  import { setRole, getMenuAll } from '@/api/main/system';
+  import { putRole, postRole, getMenuAll } from '@/api/main/system';
 
   import { BasicDrawer, useDrawerInner } from '@/components/Drawer';
   import { BasicTree, TreeItem } from '@/components/Tree';
@@ -65,13 +65,23 @@
       setDrawerProps({ confirmLoading: true });
       // TODO custom api
       console.log(values);
-      setRole(values)
-        .then(() => {
-          emit('success');
-          closeDrawer();
-        })
-        .catch(() => {})
-        .finally(() => {});
+      if (isUpdate.value) {
+        putRole(values)
+          .then(() => {
+            emit('success');
+            closeDrawer();
+          })
+          .catch(() => {})
+          .finally(() => {});
+      } else {
+        postRole(values)
+          .then(() => {
+            emit('success');
+            closeDrawer();
+          })
+          .catch(() => {})
+          .finally(() => {});
+      }
     } finally {
       setDrawerProps({ confirmLoading: false });
     }

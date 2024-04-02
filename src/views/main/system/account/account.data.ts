@@ -26,7 +26,7 @@ export const deptMap = (() => {
 export const columns: BasicColumn[] = [
   {
     title: '用户名',
-    dataIndex: 'account',
+    dataIndex: 'username',
     width: 120,
   },
   {
@@ -48,6 +48,9 @@ export const columns: BasicColumn[] = [
     title: '角色',
     dataIndex: 'role',
     width: 200,
+    customRender: ({ value }) => {
+      console.log(value.name);
+    },
   },
   {
     title: '所属部门',
@@ -116,8 +119,8 @@ export const accountFormSchema: FormSchema[] = [
     component: 'ApiSelect',
     componentProps: {
       api: getRoleListAll,
-      labelField: 'roleName',
-      valueField: 'roleValue',
+      labelField: 'name',
+      valueField: 'value',
     },
     required: true,
   },

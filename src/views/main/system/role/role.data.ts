@@ -1,11 +1,16 @@
 import { BasicColumn, FormSchema } from '@/components/Table';
 import { h } from 'vue';
 import { Switch } from 'ant-design-vue';
-import { setRole } from '@/api/main/system';
+import { putRole } from '@/api/main/system';
 import { useMessage } from '@/hooks/web/useMessage';
 
 type CheckedType = boolean | string | number;
 export const columns: BasicColumn[] = [
+  {
+    title: 'ID',
+    dataIndex: 'id',
+    width: 80,
+  },
   {
     title: '角色名称',
     dataIndex: 'name',
@@ -38,7 +43,7 @@ export const columns: BasicColumn[] = [
           record.pendingStatus = true;
           const newStatus = checked ? 1 : 0;
           const { createMessage } = useMessage();
-          setRole({ id: record.id, status: newStatus })
+          putRole({ id: record.id, status: newStatus })
             .then(() => {
               record.status = newStatus;
               createMessage.success(`已成功修改角色状态`);
@@ -88,7 +93,7 @@ export const searchFormSchema: FormSchema[] = [
 export const formSchema: FormSchema[] = [
   {
     field: 'id',
-    ifShow: false,
+    // ifShow: false,
     slot: 'id',
   },
   {

@@ -155,7 +155,7 @@ export default [
     },
   },
   {
-    url: '/basic-api/system/setRole',
+    url: '/basic-api/system/putRole',
     timeout: 500,
     method: 'post',
     response: ({ query }) => {

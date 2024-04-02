@@ -61,7 +61,7 @@ export const useUserStore = defineStore({
       this.token = info ? info : ''; // for null or undefined value
       setAuthCache(TOKEN_KEY, info);
     },
-    setRoleList(roleList: RoleEnum[]) {
+    putRoleList(roleList: RoleEnum[]) {
       this.roleList = roleList;
       setAuthCache(ROLES_KEY, roleList);
     },
@@ -132,10 +132,10 @@ export const useUserStore = defineStore({
       const { roles = [] } = userInfo;
       if (isArray(roles)) {
         const roleList = roles.map((item) => item.value) as RoleEnum[];
-        this.setRoleList(roleList);
+        this.putRoleList(roleList);
       } else {
         userInfo.roles = [];
-        this.setRoleList([]);
+        this.putRoleList([]);
       }
       this.setUserInfo(userInfo);
       return userInfo;

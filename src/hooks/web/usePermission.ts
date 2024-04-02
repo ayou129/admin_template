@@ -106,7 +106,7 @@ export function usePermission() {
     if (!isArray(roles)) {
       roles = [roles];
     }
-    userStore.setRoleList(roles);
+    userStore.putRoleList(roles);
     await resume();
   }
 

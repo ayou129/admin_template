@@ -31,12 +31,17 @@
 </template>
 <script lang="ts" setup>
   import { BasicTable, useTable, TableAction } from '@/components/Table';
-  import { getRoleList } from '@/api/main/system';
-
+  import { getRoleList, deleteRole } from '@/api/main/system';
+  import { useI18n } from '@/hooks/web/useI18n';
   import { useDrawer } from '@/components/Drawer';
   import RoleDrawer from './RoleDrawer.vue';
 
   import { columns, searchFormSchema } from './role.data';
+  import { useMessage } from '@/hooks/web/useMessage';
+
+  const { notification } = useMessage();
+
+  const { t } = useI18n();
 
   defineOptions({ name: 'RoleManagement' });
 
@@ -77,6 +82,12 @@
 
   function handleDelete(record: Recordable) {
     console.log(record);
+    deleteRole(record)
+      .then(() => {
+        notification.success({ message: t(`sys.api.operationSuccess`) });
+      })
+      .catch(() => {})
+      .finally(() => {});
   }
 
   function handleSuccess() {

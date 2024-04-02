@@ -20,7 +20,7 @@ enum Api {
   MenuAll = '/system/menu/all',
   RoleList = '/system/role/list',
   RoleAll = '/system/role/all',
-  setRole = '/system/role',
+  role = '/system/role',
   GetRoleListAll = '/system/getRoleListAll',
 }
 
@@ -42,10 +42,12 @@ export const getRoleList = (params?: RolePageParams) =>
 export const getRoleListAll = (params?: RoleParams) =>
   defHttp.get<RoleListGetResultModel>({ url: Api.GetRoleListAll, params });
 
-// export const setRole = (id: number, status: string) =>
-//   defHttp.put({ url: Api.setRole, params: { id, status } });
+// export const putRole = (id: number, status: string) =>
+//   defHttp.put({ url: Api.putRole, params: { id, status } });
 
-export const setRole = (params) => defHttp.put({ url: Api.setRole, params });
+export const putRole = (params) => defHttp.put({ url: Api.role, params });
+export const postRole = (params) => defHttp.post({ url: Api.role, params });
+export const deleteRole = (params) => defHttp.delete({ url: Api.role, params });
 
 export const isAccountExist = (account: string) =>
   defHttp.post({ url: Api.IsAccountExist, params: { account } }, { errorMessageMode: 'none' });
