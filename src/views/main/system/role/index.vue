@@ -81,7 +81,6 @@
   }
 
   function handleDelete(record: Recordable) {
-    console.log(record);
     deleteRole(record)
       .then(() => {
         notification.success({ message: t(`sys.api.operationSuccess`) });

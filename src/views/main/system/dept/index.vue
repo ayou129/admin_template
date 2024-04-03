@@ -31,19 +31,24 @@
 </template>
 <script lang="ts" setup>
   import { BasicTable, useTable, TableAction } from '@/components/Table';
-  import { getDeptList } from '@/api/main/system';
+  import { getDeptAll, deleteDept } from '@/api/main/system';
 
   import { useModal } from '@/components/Modal';
   import DeptModal from './DeptModal.vue';
 
   import { columns, searchFormSchema } from './dept.data';
+  import { useMessage } from '@/hooks/web/useMessage';
+  import { useI18n } from '@/hooks/web/useI18n';
+
+  const { notification } = useMessage();
+  const { t } = useI18n();
 
   defineOptions({ name: 'DeptManagement' });
 
   const [registerModal, { openModal }] = useModal();
   const [registerTable, { reload }] = useTable({
     title: '部门列表',
-    api: getDeptList,
+    api: getDeptAll,
     columns,
     formConfig: {
       labelWidth: 120,
@@ -80,6 +85,14 @@
 
   function handleDelete(record: Recordable) {
     console.log(record);
+    deleteDept(record)
+      .then(() => {
+        notification.success({ message: t(`sys.api.operationSuccess`) });
+      })
+      .catch(() => {})
+      .finally(() => {
+        reload();
+      });
   }
 
   function handleSuccess() {

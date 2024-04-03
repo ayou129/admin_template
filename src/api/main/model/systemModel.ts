@@ -1,7 +1,7 @@
 import { BasicPageParams, BasicFetchResult } from '@/api/model/baseModel';
 
 export type AccountParams = BasicPageParams & {
-  account?: string;
+  username?: string;
   nick_name?: string;
   [key: string]: any;
 };
@@ -25,7 +25,7 @@ export type MenuParams = {
 
 export interface AccountListItem {
   id: string;
-  account: string;
+  username: string;
   email: string;
   nick_name: string;
   role: number;
@@ -65,6 +65,8 @@ export interface RoleListItem {
 /**
  * @description: Request list return value
  */
+export type AccountGetResultModel = AccountListItem[];
+
 export type AccountListGetResultModel = BasicFetchResult<AccountListItem>;
 
 export type DeptListGetResultModel = BasicFetchResult<DeptListItem>;

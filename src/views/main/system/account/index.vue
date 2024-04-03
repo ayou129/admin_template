@@ -41,7 +41,7 @@
   import { reactive } from 'vue';
 
   import { BasicTable, useTable, TableAction } from '@/components/Table';
-  import { getAccountList } from '@/api/main/system';
+  import { getAccountList, deleteAccount, putAccount, postAccount } from '@/api/main/system';
   import { PageWrapper } from '@/components/Page';
   import DeptTree from './DeptTree.vue';
 
@@ -50,13 +50,19 @@
 
   import { columns, searchFormSchema } from './account.data';
   import { useGo } from '@/hooks/web/usePage';
+  import { useMessage } from '@/hooks/web/useMessage';
+  import { useI18n } from '@/hooks/web/useI18n';
+
+  const { notification } = useMessage();
+  const { t } = useI18n();
 
   defineOptions({ name: 'AccountManagement' });
 
   const go = useGo();
   const [registerModal, { openModal }] = useModal();
   const searchInfo = reactive<Recordable>({});
-  const [registerTable, { reload, updateTableDataRecord }] = useTable({
+  // updateTableDataRecord
+  const [registerTable, { reload }] = useTable({
     title: '账号列表',
     api: getAccountList,
     rowKey: 'id',
@@ -97,21 +103,40 @@
 
   function handleDelete(record: Recordable) {
     console.log(record);
+    deleteAccount(record)
+      .then(() => {
+        notification.success({ message: t(`sys.api.operationSuccess`) });
+      })
+      .catch(() => {})
+      .finally(() => {
+        reload();
+      });
   }
 
   function handleSuccess({ isUpdate, values }) {
     if (isUpdate) {
-      // 演示不刷新表格直接更新内部数据。
-      // 注意：updateTableDataRecord要求表格的rowKey属性为string并且存在于每一行的record的keys中
-      const result = updateTableDataRecord(values.id, values);
-      console.log(result);
+      putAccount(values)
+        .then(() => {
+          notification.success({ message: t(`sys.api.operationSuccess`) });
+        })
+        .catch(() => {})
+        .finally(() => {
+          reload();
+        });
     } else {
-      reload();
+      postAccount(values)
+        .then(() => {
+          notification.success({ message: t(`sys.api.operationSuccess`) });
+        })
+        .catch(() => {})
+        .finally(() => {
+          reload();
+        });
     }
   }
 
-  function handleSelect(deptId = '') {
-    searchInfo.deptId = deptId;
+  function handleSelect(dept_id = '') {
+    searchInfo.dept_id = dept_id;
     reload();
   }
 

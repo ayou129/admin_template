@@ -9,7 +9,7 @@
   import { BasicForm, useForm } from '@/components/Form';
   import { formSchema } from './dept.data';
 
-  import { getDeptList } from '@/api/main/system';
+  import { getDeptAll, postDept, putDept } from '@/api/main/system';
 
   defineOptions({ name: 'DeptModal' });
 
@@ -34,7 +34,7 @@
         ...data.record,
       });
     }
-    const treeData = await getDeptList();
+    const treeData = await getDeptAll();
     updateSchema({
       field: 'pid',
       componentProps: { treeData },
@@ -49,8 +49,23 @@
       setModalProps({ confirmLoading: true });
       // TODO custom api
       console.log(values);
-      closeModal();
-      emit('success');
+      if (isUpdate.value) {
+        putDept(values)
+          .then(() => {
+            emit('success');
+            closeModal();
+          })
+          .catch(() => {})
+          .finally(() => {});
+      } else {
+        postDept(values)
+          .then(() => {
+            emit('success');
+            closeModal();
+          })
+          .catch(() => {})
+          .finally(() => {});
+      }
     } finally {
       setModalProps({ confirmLoading: false });
     }

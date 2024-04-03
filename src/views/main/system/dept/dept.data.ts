@@ -6,21 +6,20 @@ export const columns: BasicColumn[] = [
   {
     title: '部门名称',
     dataIndex: 'name',
-    width: 160,
+    width: 200,
     align: 'left',
   },
   {
     title: '排序',
-    dataIndex: 'dept_sort',
-    width: 50,
+    dataIndex: 'sort',
   },
   {
     title: '状态',
     dataIndex: 'status',
-    width: 80,
     customRender: ({ record }) => {
       const status = record.status;
-      const enable = ~~status === 0;
+      console.log(status);
+      const enable = status !== 0;
       const color = enable ? 'green' : 'red';
       const text = enable ? '启用' : '停用';
       return h(Tag, { color: color }, () => text);
@@ -29,7 +28,6 @@ export const columns: BasicColumn[] = [
   {
     title: '创建时间',
     dataIndex: 'created_at',
-    width: 180,
   },
   {
     title: '备注',
@@ -50,8 +48,8 @@ export const searchFormSchema: FormSchema[] = [
     component: 'Select',
     componentProps: {
       options: [
-        { label: '启用', value: '0' },
-        { label: '停用', value: '1' },
+        { label: '启用', value: 1 },
+        { label: '停用', value: 0 },
       ],
     },
     colProps: { span: 8 },
@@ -59,6 +57,11 @@ export const searchFormSchema: FormSchema[] = [
 ];
 
 export const formSchema: FormSchema[] = [
+  {
+    field: 'id',
+    label: 'ID',
+    slot: '',
+  },
   {
     field: 'name',
     label: '部门名称',
@@ -71,6 +74,7 @@ export const formSchema: FormSchema[] = [
     component: 'TreeSelect',
     ifShow({ values }) {
       const { name, pid } = values;
+      console.log(values);
       // Hide without a pid when editing
       return pid || (!name && !pid);
     },
@@ -84,7 +88,7 @@ export const formSchema: FormSchema[] = [
     required: true,
   },
   {
-    field: 'dept_sort',
+    field: 'sort',
     label: '排序',
     component: 'InputNumber',
     required: true,
@@ -93,11 +97,11 @@ export const formSchema: FormSchema[] = [
     field: 'status',
     label: '状态',
     component: 'RadioButtonGroup',
-    defaultValue: '0',
+    defaultValue: 0,
     componentProps: {
       options: [
-        { label: '启用', value: '0' },
-        { label: '停用', value: '1' },
+        { label: '启用', value: 1 },
+        { label: '停用', value: 0 },
       ],
     },
     required: true,

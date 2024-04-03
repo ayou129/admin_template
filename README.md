@@ -1,3 +1,72 @@
+```js
+// Delete
+    deleteAccount(record)
+      .then(() => {
+        notification.success({ message: t(`sys.api.operationSuccess`) });
+      })
+      .catch(() => {})
+      .finally(() => {
+        reload();
+      });
+
+// Submit put or post
+async function handleSubmit() {
+    try {
+      const values = await validate();
+      setDrawerProps({ confirmLoading: true });
+      // TODO custom api
+      console.log(values);
+      if (isUpdate.value) {
+        putRole(values)
+          .then(() => {
+            emit('success');
+            closeDrawer();
+          })
+          .catch(() => {})
+          .finally(() => {});
+      } else {
+        postRole(values)
+          .then(() => {
+            emit('success');
+            closeDrawer();
+          })
+          .catch(() => {})
+          .finally(() => {});
+      }
+    } finally {
+      setDrawerProps({ confirmLoading: false });
+    }
+```
+
+```js
+import { useMessage } from '@/hooks/web/useMessage';
+import { useI18n } from '@/hooks/web/useI18n';
+
+const { notification } = useMessage();
+const { t } = useI18n();
+function handleSuccess({ isUpdate, values }) {
+  if (isUpdate) {
+    putAccount(values)
+      .then(() => {
+        notification.success({ message: t(`sys.api.operationSuccess`) });
+      })
+      .catch(() => {})
+      .finally(() => {
+        reload();
+      });
+  } else {
+    postAccount(values)
+      .then(() => {
+        notification.success({ message: t(`sys.api.operationSuccess`) });
+      })
+      .catch(() => {})
+      .finally(() => {
+        reload();
+      });
+  }
+}
+```
+
 <div align="center"> <a href="https://github.com/anncwb/vue-vben-admin"> <img alt="VbenAdmin Logo" width="200" height="200" src="https://anncwb.github.io/anncwb/images/logo.png"> </a> <br> <br>
 
 [![license](https://img.shields.io/github/license/anncwb/vue-vben-admin.svg)](LICENSE)

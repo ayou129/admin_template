@@ -223,7 +223,6 @@ export const usePermissionStore = defineStore({
           try {
             await this.changePermissionCode();
             routeList = (await getUserMenus()) as AppRouteRecordRaw[];
-            console.log(routeList);
           } catch (error) {
             console.error(error);
           }

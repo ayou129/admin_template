@@ -1,5 +1,5 @@
 // isAccountExist
-import { getRoleAll } from '@/api/main/system';
+import { getRoleAll, getDeptAll } from '@/api/main/system';
 import { BasicColumn, FormSchema } from '@/components/Table';
 
 /**
@@ -68,10 +68,6 @@ export const columns: BasicColumn[] = [
       }
     },
   },
-  {
-    title: '备注',
-    dataIndex: 'remark',
-  },
 ];
 
 export const searchFormSchema: FormSchema[] = [
@@ -125,26 +121,27 @@ export const accountFormSchema: FormSchema[] = [
     ifShow: false,
   },
   {
+    field: 'role_id',
     label: '角色',
-    field: 'role',
     component: 'ApiSelect',
     componentProps: {
       api: getRoleAll,
       labelField: 'name',
-      valueField: 'value',
+      valueField: 'id',
     },
     required: true,
   },
   {
-    field: 'dept',
+    field: 'dept_id',
     label: '所属部门',
-    component: 'TreeSelect',
+    component: 'ApiTreeSelect',
     componentProps: {
-      fieldNames: {
-        label: 'name',
-        value: 'id',
+      api: getDeptAll,
+      labelField: 'name',
+      valueField: 'id',
+      onChange: (e, v) => {
+        console.log('ApiTreeSelect====>:', e, v);
       },
-      getPopupContainer: () => document.body,
     },
     required: true,
   },
@@ -160,11 +157,5 @@ export const accountFormSchema: FormSchema[] = [
     field: 'email',
     component: 'Input',
     required: true,
-  },
-
-  {
-    label: '备注',
-    field: 'remark',
-    component: 'InputTextArea',
   },
 ];
