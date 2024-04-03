@@ -164,7 +164,7 @@ export default [
     },
   },
   {
-    url: '/basic-api/system/getRoleListAll',
+    url: '/basic-api/system/getRoleAll',
     timeout: 100,
     method: 'get',
     response: () => {

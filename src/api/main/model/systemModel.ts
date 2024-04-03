@@ -54,10 +54,11 @@ export interface MenuListItem {
 
 export interface RoleListItem {
   id: string;
-  roleName: string;
-  roleValue: string;
+  name: string;
+  value: string;
+  sort: string;
+  remark: number;
   status: number;
-  dept_sort: string;
   created_at: string;
 }
 
@@ -68,10 +69,14 @@ export type AccountListGetResultModel = BasicFetchResult<AccountListItem>;
 
 export type DeptListGetResultModel = BasicFetchResult<DeptListItem>;
 
+export type RoleListGetResultModel = BasicFetchResult<RoleListItem>;
+
+export type DeptAllGetResultModel = DeptListItem[];
+
 export type MenuListGetResultModel = BasicFetchResult<MenuListItem>;
 
 export type MenuGetResultModels = MenuListItem[];
 
-export type RoleListGetResultModel = BasicFetchResult<RoleListItem>;
+export type RoleAllGetResultModel = BasicFetchResult<RoleListItem>;
 
 export type RoleGetResultModels = RoleListItem[];
