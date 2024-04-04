@@ -26,6 +26,7 @@ enum Api {
   RoleList = '/system/role/list',
   RoleAll = '/system/role/all',
   Role = '/system/role',
+  AccountPassword = '/system/user/update_password',
 }
 
 export const postAccount = (params: AccountParams) => defHttp.post({ url: Api.Account, params });
@@ -59,3 +60,5 @@ export const deleteRole = (params) => defHttp.delete({ url: Api.Role, params });
 
 export const isAccountExist = (username: string) =>
   defHttp.get({ url: Api.IsAccountExist, params: { username } }, { errorMessageMode: 'none' });
+
+export const putAccountPassword = (params) => defHttp.put({ url: Api.AccountPassword, params });

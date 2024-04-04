@@ -4,7 +4,6 @@ export {};
 
 declare module 'vue-router' {
   interface RouteMeta extends Record<string | number | symbol, unknown> {
-    dept_sort?: number;
     // title
     title: string;
     // dynamic router level.
@@ -41,6 +40,7 @@ declare module 'vue-router' {
     // Never show in menu
     hideMenu?: boolean;
     isLink?: boolean;
+    sort?: number;
     // only build for Menu
     ignoreRoute?: boolean;
     // Hide path for children
