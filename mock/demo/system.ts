@@ -24,7 +24,7 @@ const roleList = (() => {
   for (let index = 0; index < 4; index++) {
     result.push({
       id: index + 1,
-      dept_sort: `${index + 1}`,
+      sort: `${index + 1}`,
       roleName: ['超级管理员', '管理员', '文章管理员', '普通用户'][index],
       roleValue: '@first',
       created_at: '@datetime',
@@ -42,7 +42,7 @@ const deptList = (() => {
     result.push({
       id: `${index}`,
       name: ['华东分部', '华南分部', '西北分部'][index],
-      dept_sort: index + 1,
+      sort: index + 1,
       created_at: '@datetime',
       remark: '@cword(10,20)',
       'status|1': ['0', '0', '1'],
@@ -52,7 +52,7 @@ const deptList = (() => {
           children.push({
             id: `${index}-${j}`,
             name: ['研发部', '市场部', '商务部', '财务部'][j],
-            dept_sort: j + 1,
+            sort: j + 1,
             created_at: '@datetime',
             remark: '@cword(10,20)',
             'status|1': ['0', '1'],
@@ -77,7 +77,7 @@ const menuList = (() => {
       type: '0',
       name: ['Dashboard', '权限管理', '功能'][index],
       permission: '',
-      dept_sort: index + 1,
+      sort: index + 1,
       created_at: '@datetime',
       'status|1': ['0', '0', '1'],
       children: (() => {
@@ -95,7 +95,7 @@ const menuList = (() => {
               '/dashboard/workbench/index',
               '/dashboard/test/index',
             ][j],
-            dept_sort: j + 1,
+            sort: j + 1,
             created_at: '@datetime',
             'status|1': ['0', '1'],
             parentMenu: `${index}`,
@@ -117,7 +117,7 @@ const menuList = (() => {
                     '/dashboard/workbench/index',
                     '/dashboard/test/index',
                   ][j],
-                  dept_sort: j + 1,
+                  sort: j + 1,
                   created_at: '@datetime',
                   'status|1': ['0', '1'],
                   parentMenu: `${index}-${j}`,

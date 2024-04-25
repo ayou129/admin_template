@@ -96,8 +96,8 @@ export const articleList = (() => {
   const result: any[] = [];
   for (let i = 0; i < 4; i++) {
     result.push({
-      title: '尤礼尤科技',
-      description: ['Vben', '设计语言', 'Typescript'],
+      title: '尤礼科技',
+      description: ['admin', '设计语言', 'Typescript'],
       content: '基于Vue Next, TypeScript, Ant Design实现的一套完整的企业级后台管理系统。',
       time: '2020-11-14 11:20',
     });
@@ -109,7 +109,7 @@ export const applicationList = (() => {
   const result: any[] = [];
   for (let i = 0; i < 8; i++) {
     result.push({
-      title: '尤礼尤科技',
+      title: '尤礼科技',
       icon: 'emojione-monotone:letter-a',
       color: '#1890ff',
       active: '100',
@@ -124,7 +124,7 @@ export const projectList = (() => {
   const result: any[] = [];
   for (let i = 0; i < 8; i++) {
     result.push({
-      title: '尤礼尤科技',
+      title: '尤礼科技',
       content: '基于Vue Next, TypeScript, Ant Design实现的一套完整的企业级后台管理系统。',
     });
   }

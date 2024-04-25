@@ -36,7 +36,7 @@ export interface AccountListItem {
 
 export interface DeptListItem {
   id: string;
-  dept_sort: string;
+  sort: string;
   created_at: string;
   remark: string;
   status: number;
@@ -44,7 +44,7 @@ export interface DeptListItem {
 
 export interface MenuListItem {
   id: string;
-  dept_sort: string;
+  sort: string;
   created_at: string;
   status: number;
   icon: string;

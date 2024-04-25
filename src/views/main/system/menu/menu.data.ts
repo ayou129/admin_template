@@ -112,7 +112,7 @@ export const formSchema: FormSchema[] = [
   },
 
   {
-    field: 'dept_sort',
+    field: 'sort',
     label: '排序',
     component: 'InputNumber',
     required: true,

@@ -9,7 +9,7 @@ const dashboard: AppRouteModule = {
   component: LAYOUT,
   redirect: '/dashboard/analysis',
   meta: {
-    dept_sort: 10,
+    sort: 10,
     icon: 'ion:grid-outline',
     title: t('routes.dashboard.dashboard'),
   },

@@ -8,7 +8,7 @@ const charts: AppRouteModule = {
   component: LAYOUT,
   redirect: '/useRequest/base',
   meta: {
-    dept_sort: 900,
+    sort: 900,
     icon: 'ant-design:api-outlined',
     title: 'useRequest',
   },

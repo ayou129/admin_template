@@ -14,13 +14,13 @@
     <div class="result-success__content">
       <Descriptions title="项目名称">
         <Descriptions.Item label="项目 ID"> 111222 </Descriptions.Item>
-        <Descriptions.Item label="负责人"> Vben </Descriptions.Item>
+        <Descriptions.Item label="负责人"> admin </Descriptions.Item>
         <Descriptions.Item label="生效时间"> 2016-12-12 ~ 2017-12-12 </Descriptions.Item>
       </Descriptions>
       <Steps :current="1" progress-dot size="small">
         <Steps.Step title="创建项目">
           <template #description>
-            <div>Vben</div>
+            <div>admin</div>
             <p>2016-12-12 12:32</p>
           </template>
         </Steps.Step>

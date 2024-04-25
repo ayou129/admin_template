@@ -9,7 +9,7 @@ const steps: AppRouteModule = {
   component: LAYOUT,
   redirect: '/steps/index',
   meta: {
-    dept_sort: 90000,
+    sort: 90000,
     hideChildrenInMenu: true,
     icon: 'whh:paintroll',
     title: t('routes.main.steps.page'),

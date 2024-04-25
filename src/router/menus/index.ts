@@ -42,8 +42,10 @@ const isRoleMode = () => {
 
 const staticMenus: Menu[] = [];
 (() => {
+  console.log(menuModules, getPermissionMode());
+
   menuModules.sort((a, b) => {
-    return (a.dept_sort || 0) - (b.dept_sort || 0);
+    return (a.sort || 0) - (b.sort || 0);
   });
 
   for (const menu of menuModules) {

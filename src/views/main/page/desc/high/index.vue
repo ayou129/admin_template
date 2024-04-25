@@ -28,7 +28,7 @@
         <Steps :current="1" progress-dot size="small">
           <Steps.Step title="创建项目">
             <template #description>
-              <div>Vben</div>
+              <div>尤礼</div>
               <p>2016-12-12 12:32</p>
             </template>
           </Steps.Step>
