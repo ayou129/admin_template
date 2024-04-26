@@ -10,18 +10,18 @@
             :actions="[
               {
                 icon: 'clarity:info-standard-line',
-                tooltip: '查看用户详情',
+                tooltip: '查看详情',
                 onClick: handleView.bind(null, record),
               },
               {
                 icon: 'clarity:note-edit-line',
-                tooltip: '编辑用户资料',
+                tooltip: '编辑资料',
                 onClick: handleEdit.bind(null, record),
               },
               {
                 icon: 'ant-design:delete-outlined',
                 color: 'error',
-                tooltip: '删除此用户',
+                tooltip: '删除',
                 popConfirm: {
                   title: '是否确认删除',
                   placement: 'left',
@@ -33,20 +33,20 @@
         </template>
       </template>
     </BasicTable>
-    <UserModal @register="registerModal" @success="handleSuccess" />
+    <RequestModal @register="registerModal" @success="handleSuccess" />
   </PageWrapper>
 </template>
 <script lang="ts" setup>
   import { reactive } from 'vue';
 
   import { BasicTable, useTable, TableAction } from '@/components/Table';
-  import { getUserList, deleteUser, putUser, postUser } from '@/api/user/user';
+  import { getRequestList, deleteRequest } from '@/api/sys/request';
   import { PageWrapper } from '@/components/Page';
 
   import { useModal } from '@/components/Modal';
-  import UserModal from './UserModal.vue';
+  import RequestModal from './RequestModal.vue';
 
-  import { columns, searchFormSchema } from './user.data';
+  import { columns, searchFormSchema } from './request.data';
   import { useGo } from '@/hooks/web/usePage';
   import { useMessage } from '@/hooks/web/useMessage';
   import { useI18n } from '@/hooks/web/useI18n';
@@ -54,15 +54,15 @@
   const { notification } = useMessage();
   const { t } = useI18n();
 
-  defineOptions({ name: 'UserManagement' });
+  defineOptions({ name: 'RequestManagement' });
 
   const go = useGo();
   const [registerModal, { openModal }] = useModal();
   const searchInfo = reactive<Recordable>({});
   // updateTableDataRecord
   const [registerTable, { reload }] = useTable({
-    title: '用户列表',
-    api: getUserList,
+    title: '列表',
+    api: getRequestList,
     rowKey: 'id',
     columns,
     formConfig: {
@@ -101,7 +101,7 @@
 
   function handleDelete(record: Recordable) {
     console.log(record);
-    deleteUser(record)
+    deleteRequest(record)
       .then(() => {
         notification.success({ message: t(`sys.api.operationSuccess`) });
       })
@@ -111,29 +111,30 @@
       });
   }
 
-  function handleSuccess({ isUpdate, values }) {
-    if (isUpdate) {
-      putUser(values)
-        .then(() => {
-          notification.success({ message: t(`sys.api.operationSuccess`) });
-        })
-        .catch(() => {})
-        .finally(() => {
-          reload();
-        });
-    } else {
-      postUser(values)
-        .then(() => {
-          notification.success({ message: t(`sys.api.operationSuccess`) });
-        })
-        .catch(() => {})
-        .finally(() => {
-          reload();
-        });
-    }
+  // function handleSuccess({ isUpdate, values }) {
+  function handleSuccess() {
+    // if (isUpdate) {
+    //   putRequest(values)
+    //     .then(() => {
+    //       notification.success({ message: t(`sys.api.operationSuccess`) });
+    //     })
+    //     .catch(() => {})
+    //     .finally(() => {
+    //       reload();
+    //     });
+    // } else {
+    //   postRequest(values)
+    //     .then(() => {
+    //       notification.success({ message: t(`sys.api.operationSuccess`) });
+    //     })
+    //     .catch(() => {})
+    //     .finally(() => {
+    //       reload();
+    //     });
+    // }
   }
 
   function handleView(record: Recordable) {
-    go('/system/User_detail/' + record.id);
+    go('/system/request_detail/' + record.id);
   }
 </script>

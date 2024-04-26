@@ -7,9 +7,9 @@
   import { ref, computed, unref } from 'vue';
   import { BasicModal, useModalInner } from '@/components/Modal';
   import { BasicForm, useForm } from '@/components/Form';
-  import { userFormSchema } from './user.data';
+  import { requestFormSchema } from './request.data';
 
-  defineOptions({ name: 'UserModal' });
+  defineOptions({ name: 'RequestModal' });
 
   const emit = defineEmits(['success', 'register']);
 
@@ -19,7 +19,7 @@
   const [registerForm, { setFieldsValue, updateSchema, resetFields, validate }] = useForm({
     labelWidth: 100,
     baseColProps: { span: 24 },
-    schemas: userFormSchema,
+    schemas: requestFormSchema,
     showActionButtonGroup: false,
     actionColOptions: {
       span: 23,
@@ -61,3 +61,4 @@
     }
   }
 </script>
+./request ./request.data

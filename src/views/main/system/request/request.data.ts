@@ -1,53 +1,51 @@
 import { BasicColumn, FormSchema } from '@/components/Table';
-import { Image } from 'ant-design-vue';
-import { h } from 'vue';
+// import { Image } from 'ant-design-vue';
+// import { h } from 'vue';
 
 export const columns: BasicColumn[] = [
   {
-    title: '头像',
-    dataIndex: 'avatar_url',
-    width: 120,
-    customRender: ({ value }) => {
-      return h(Image, {
-        src: value,
-        width: 50,
-      });
-    },
+    title: 'method',
+    dataIndex: 'method',
   },
   {
-    title: '用户名',
-    dataIndex: 'username',
-    width: 120,
+    title: 'path',
+    dataIndex: 'path',
+    width: 200,
   },
   {
-    title: '手机号',
-    dataIndex: 'phone',
+    title: 'headers',
+    dataIndex: 'headers',
     width: 120,
   },
   {
-    title: '昵称',
-    dataIndex: 'nickname',
+    title: 'params',
+    dataIndex: 'params',
     width: 120,
   },
   {
-    title: '真实名称',
-    dataIndex: 'real_name',
+    title: 'body',
+    dataIndex: 'body',
+  },
+  {
+    title: 'ip',
+    dataIndex: 'ip',
     width: 120,
   },
   {
-    title: '微信开放平台ID',
-    dataIndex: 'wx_unioinid',
-    width: 120,
+    title: 'user_agent',
+    dataIndex: 'user_agent',
   },
   {
-    title: '陪玩名称',
-    dataIndex: 'playw_report_playwname',
-    width: 120,
+    title: 'u_id',
+    dataIndex: 'u_id',
   },
   {
-    title: '陪玩单价',
-    dataIndex: 'playw_report_club_jiedan_price',
-    width: 120,
+    title: 'exception_trace',
+    dataIndex: 'exception_trace',
+  },
+  {
+    title: 'exception_info',
+    dataIndex: 'exception_info',
   },
   {
     title: '创建时间',
@@ -71,7 +69,7 @@ export const searchFormSchema: FormSchema[] = [
   },
 ];
 
-export const userFormSchema: FormSchema[] = [
+export const requestFormSchema: FormSchema[] = [
   {
     field: 'username',
     label: '用户名',
